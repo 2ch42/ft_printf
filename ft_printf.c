@@ -8,19 +8,12 @@ int	ft_printf(const char *str, ...)
 
 	i = 0;
 	va_start(ap, str);
-	while (*(str + i))
+	while (*str++)
 	{
-		if ()
+		if (*str == '%')
 		{
-
-		}
-		else if ()
-		{
-
-		}
-		else if ()
-		{
-
+			//
+			//va_arg ~ 
 		}
 		else
 			write(1, s + i, 1);
