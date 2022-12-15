@@ -6,13 +6,13 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 21:02:10 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/13 21:48:35 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/15 20:08:42 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*ft_putnbr_base_all_oc(unsigned int nbr, char *base)
+static char	*ft_putnbr_base_all_oc(unsigned int nbr)
 {
 	unsigned int	divider;
 	int				mal_len;
@@ -55,9 +55,12 @@ char	*ft_convert_base(unsigned int nbr, char *base_to)
 {
 	char	*ret_str;
 
-	ret_str = ft_putnbr_base_all_oc(nbr, base_to);
+	ret_str = ft_putnbr_base_all_oc(nbr);
 	if (ret_str == NULL)
+	{
+		free(ret_str);
 		return (NULL);
+	}
 	ft_putnbr_base_write(nbr, base_to, ret_str);
 	return (ret_str);
 }

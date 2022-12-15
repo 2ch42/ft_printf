@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_num_p.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:20:00 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/13 22:05:23 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/15 20:45:02 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,46 @@
 
 void	print_d(va_list *ap_p, int *len_addr)
 {
-	int		d;
-	char	*s;
+	int	d;
+	int	len;
 
 	d = va_arg(*ap_p, int);
-	s = ft_itoa(s);
-	ft_putstr_fd(s, 1);
-	*len_addr += ft_strlen(s);
+	len = ft_putnbr_fd(d, 1);
+	*len_addr += len;
 }
 
 void	print_u(va_list *ap_p, int *len_addr)
 {
 	unsigned int	d;
-	char			*s;
+	int				len;
 
 	d = va_arg(*ap_p, unsigned int);
-	s = ft_uitoa(d);
-	ft_putstr_fd(s, 1);
-	*len_addr += ft_strlen(s);
+	len = ft_put_u_nbr_fd(d, 1);
+	*len_addr += len;
 }
 
 void	print_x(va_list *ap_p, int *len_addr)
 {
-	int		d;
-	char	*s;
+	int				d;
+	unsigned int	i;
+	char			*s;
 
 	d = va_arg(*ap_p, int);
-	s = ft_convert_base(d, "0123456789abcdef");
+	i = (unsigned int)d;
+	s = ft_convert_base(i, "0123456789abcdef");
 	ft_putstr_fd(s, 1);
 	*len_addr += ft_strlen(s);
 }
 
-void	print_big_X(va_list *ap_p, int *len_addr)
+void	print_big_x(va_list *ap_p, int *len_addr)
 {
-	int		d;
-	char	*s;
+	int				d;
+	unsigned int	i;
+	char			*s;
 
 	d = va_arg(*ap_p, int);
-	s = ft_convert_base(d, "0123456789ABCDEF");
+	i = (unsigned int)d;
+	s = ft_convert_base(i, "0123456789ABCDEF");
 	ft_putstr_fd(s, 1);
 	*len_addr += ft_strlen(s);
 }

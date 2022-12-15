@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:16:17 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/13 22:05:25 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/15 19:39:57 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,35 @@ void	print_num(const char c, va_list *ap_p, int *len_addr)
 		print_x(ap_p, len_addr);
 	}
 	else
-		print_big_X(ap_p, len_addr);
+		print_big_x(ap_p, len_addr);
 }
 
-void	print_s(const char c, va_list *ap_p, int *len_addr)
+void	print_s(va_list *ap_p, int *len_addr)
 {
 	char	*s;
 
 	s = va_arg(*ap_p, char *);
-	ft_putstr(s, 1);
-	*len_addr += ft_strlen(s);
+	if (s == NULL)
+	{
+		write(1, "(null)", 6);
+		*len_addr += 6;
+	}
+	else
+	{
+		ft_putstr_fd(s, 1);
+		*len_addr += ft_strlen(s);
+	}
 }
 
-void	print_p(const char c, va_list *ap_p, int *len_addr)
+void	print_p(va_list *ap_p, int *len_addr)
 {
-	void	*p;
+	unsigned long long	p;
+	char				*s;
 
-	p = va_arg(*ap_p, void *);
-	p = 
+	p = va_arg(*ap_p, unsigned long long);
+	s = ft_convert_base(p, "0123456789abcdef");
+	write(1, "0x", 2);
+	*len_addr += 2;
+	ft_putstr_fd(s, 1);
+	*len_addr += ft_strlen(s);
 }
