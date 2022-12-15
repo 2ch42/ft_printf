@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:24:50 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 20:42:34 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:43:53 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 int		ft_strlen(const	char *s);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_convert_base(unsigned int nbr, char *base_to);
+char	*ft_ll_convert_base(unsigned long long nbr, char *base_to);
 int		get_n_len(long long n);
 int		ft_putnbr_fd(int n, int fd);
 int		ft_put_u_nbr_fd(unsigned int n, int fd);

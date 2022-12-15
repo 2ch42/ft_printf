@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:47:57 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 20:34:11 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:01:09 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,18 @@ static void	print_result(int nb, int fd)
 
 int	ft_putnbr_fd(int n, int fd)
 {
-	int		length;
-	int		div_val;
+	int	len;
 
-	length = how_long(n);
-	div_val = make_divide(how_long(n));
+	len = 0;
 	if (n == 0)
 	{
 		write(fd, "0", 1);
+		return (1);
 	}
 	else if (n == -2147483648)
 	{
 		write(fd, "-2147483648", 11);
+		return (11);
 	}
 	else
 	{
@@ -76,8 +76,10 @@ int	ft_putnbr_fd(int n, int fd)
 		{
 			n = -n;
 			write(fd, "-", 1);
+			len++;
 		}
 		print_result(n, fd);
+		len += how_long(n);
 	}
-	return (length);
+	return (len);
 }

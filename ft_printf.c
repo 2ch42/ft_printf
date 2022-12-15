@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:24:38 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 20:09:33 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:44:30 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,3 @@ int	ft_printf(const char *str, ...)
 	va_end(ap);
 	return (len);
 }
-
-/*
-#include <stdio.h>
-
-int main()
-{
-	int i1 = printf("abcdef%d", 1);
-	printf("\n");
-	int i2 = ft_printf("abcdef%d", 2);
-	printf("\n");
-	printf("i1 = %d, i2 = %d", i1, i2);
-	return (0);
-}
-*/

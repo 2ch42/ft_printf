@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:47:57 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 20:43:03 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:09:12 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,12 @@ void	print_result(unsigned int nb, int fd)
 
 int	ft_put_u_nbr_fd(unsigned int n, int fd)
 {
-	int				length;
-	unsigned int	div_val;
-
-	length = how_long(n);
-	div_val = make_divide(how_long(n));
 	if (n == 0)
 	{
 		write(fd, "0", 1);
+		return (1);
 	}
 	else
 		print_result(n, fd);
-	return (length);
+	return (how_long(n));
 }
