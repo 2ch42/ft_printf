@@ -6,13 +6,14 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:20:00 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 22:23:08 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:13:50 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "ft_printf.h"
 
-void	print_d(va_list *ap_p, int *len_addr)
+void	print_d(va_list *ap_p, unsigned long long *len_addr)
 {
 	int	d;
 	int	len;
@@ -22,7 +23,7 @@ void	print_d(va_list *ap_p, int *len_addr)
 	*len_addr += len;
 }
 
-void	print_u(va_list *ap_p, int *len_addr)
+void	print_u(va_list *ap_p, unsigned long long *len_addr)
 {
 	unsigned int	d;
 	int				len;
@@ -32,7 +33,7 @@ void	print_u(va_list *ap_p, int *len_addr)
 	*len_addr += len;
 }
 
-void	print_x(va_list *ap_p, int *len_addr)
+void	print_x(va_list *ap_p, unsigned long long *len_addr)
 {
 	int				d;
 	unsigned int	i;
@@ -46,7 +47,7 @@ void	print_x(va_list *ap_p, int *len_addr)
 	free(s);
 }
 
-void	print_big_x(va_list *ap_p, int *len_addr)
+void	print_big_x(va_list *ap_p, unsigned long long *len_addr)
 {
 	int				d;
 	unsigned int	i;

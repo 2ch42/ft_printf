@@ -6,13 +6,15 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:16:17 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 22:40:12 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:14:16 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stdlib.h>
 #include "ft_printf.h"
 
-void	print_num(const char c, va_list *ap_p, int *len_addr)
+void	print_num(const char c, va_list *ap_p, unsigned long long *len_addr)
 {
 	if (c == 'd' || c == 'i')
 	{
@@ -30,7 +32,7 @@ void	print_num(const char c, va_list *ap_p, int *len_addr)
 		print_big_x(ap_p, len_addr);
 }
 
-void	print_s(va_list *ap_p, int *len_addr)
+void	print_s(va_list *ap_p, unsigned long long *len_addr)
 {
 	char	*s;
 
@@ -47,7 +49,7 @@ void	print_s(va_list *ap_p, int *len_addr)
 	}
 }
 
-void	print_p(va_list *ap_p, int *len_addr)
+void	print_p(va_list *ap_p, unsigned long long *len_addr)
 {
 	unsigned long long	p;
 	char				*s;

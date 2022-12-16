@@ -6,13 +6,14 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:24:38 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 22:44:30 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:18:37 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "ft_printf.h"
 
-void	check_ts(const	char c, va_list *ap_p, int *len_p)
+void	check_ts(const	char c, va_list *ap_p, unsigned long long *len_p)
 {
 	unsigned char	arg;
 	int				d;
@@ -41,9 +42,9 @@ void	check_ts(const	char c, va_list *ap_p, int *len_p)
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	ap;
-	int		len;
-	int		i;
+	va_list				ap;
+	unsigned long long	len;
+	int					i;
 
 	len = 0;
 	i = 0;
@@ -63,5 +64,7 @@ int	ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(ap);
+	if (len > 2147483647)
+		return (-1);
 	return (len);
 }

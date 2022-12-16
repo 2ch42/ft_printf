@@ -6,11 +6,11 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:47:57 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 22:01:09 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:03:18 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
 static int	how_long(int var)
 {

@@ -6,11 +6,11 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:55:07 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/15 16:53:55 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:03:48 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
 int	ft_strlen(const	char *s)
 {
