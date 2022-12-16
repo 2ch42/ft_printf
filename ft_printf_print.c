@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:16:17 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 16:30:55 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:45:10 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,13 @@ int	print_p(va_list *ap_p, unsigned long long *len_addr)
 
 	p = va_arg(*ap_p, unsigned long long);
 	s = ft_ll_convert_base(p, "0123456789abcdef");
-	if (write(1, "0x", 2) == -1)
+	if (!s)
 		return (-1);
+	if (write(1, "0x", 2) == -1)
+	{
+		free(s);
+		return (-1);
+	}
 	*len_addr += 2;
 	if (ft_putstr_fd(s, 1) == -1)
 		return (-1);

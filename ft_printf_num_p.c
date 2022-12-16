@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:20:00 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 16:32:38 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:48:58 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,13 @@ int	print_x(va_list *ap_p, unsigned long long *len_addr)
 	d = va_arg(*ap_p, int);
 	i = (unsigned int)d;
 	s = ft_convert_base(i, "0123456789abcdef");
-	if (ft_putstr_fd(s, 1) == -1)
+	if (!s)
 		return (-1);
+	if (ft_putstr_fd(s, 1) == -1)
+	{
+		free(s);
+		return (-1);
+	}
 	*len_addr += ft_strlen(s);
 	free(s);
 	return (1);
@@ -64,8 +69,13 @@ int	print_big_x(va_list *ap_p, unsigned long long *len_addr)
 	d = va_arg(*ap_p, int);
 	i = (unsigned int)d;
 	s = ft_convert_base(i, "0123456789ABCDEF");
-	if (ft_putstr_fd(s, 1) == -1)
+	if (!s)
 		return (-1);
+	if (ft_putstr_fd(s, 1) == -1)
+	{
+		free(s);
+		return (-1);
+	}
 	*len_addr += ft_strlen(s);
 	free(s);
 	return (1);

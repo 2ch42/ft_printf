@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 21:02:10 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 13:00:02 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:38:28 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ static char	*ft_putnbr_base_all_oc(unsigned long long nbr)
 		divider /= 16;
 	}
 	str = (char *)malloc(sizeof(char) * (mal_len + 1));
+	if (!str)
+	{
+		free (str);
+		return (NULL);
+	}
 	*(str + mal_len) = 0;
 	return (str);
 }
