@@ -6,65 +6,74 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:24:38 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 13:18:37 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:21:15 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
 
-void	check_ts(const	char c, va_list *ap_p, unsigned long long *len_p)
+static int	check_ts(const	char c, va_list *ap_p, unsigned long long *len_p)
 {
-	unsigned char	arg;
-	int				d;
+	int	ret_val;
 
 	if (c == 'c')
-	{
-		d = va_arg(*ap_p, int);
-		arg = (unsigned char)d;
-		write(1, &d, 1);
-		*len_p += 1;
-	}
+		ret_val = print_c(ap_p, len_p);
 	else if (c == 's')
-		print_s(ap_p, len_p);
+		ret_val = print_s(ap_p, len_p);
 	else if (c == 'p')
-		print_p(ap_p, len_p);
+		ret_val = print_p(ap_p, len_p);
 	else if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
-		print_num(c, ap_p, len_p);
+		ret_val = print_num(c, ap_p, len_p);
 	else if (c == '%')
 	{
-		write(1, "%", 1);
+		if (!(write(1, "%", 1)))
+			ret_val = -1;
+		else
+			ret_val = 1;
 		*len_p += 1;
 	}
 	else
-		*len_p = -1;
+		ret_val = -1;
+	return (ret_val);
+}
+
+static int	print_len_ret(const char *str, va_list *ap_p)
+{
+	unsigned long long	len;
+	int					i;
+	int					check;
+
+	len = 0;
+	i = 0;
+	check = 1;
+	while (*(str + i) && check)
+	{
+		if (*(str + i) == '%')
+		{
+			i++;
+			check = check_ts(*(str + i), ap_p, &len);
+		}
+		else
+		{
+			if (!(write(1, str + i, 1)))
+				return (-1);
+			len++;
+		}
+		i++;
+	}
+	if (len > 2147483647)
+		return (-1);
+	return (len);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list				ap;
-	unsigned long long	len;
-	int					i;
+	int					len;
 
-	len = 0;
-	i = 0;
 	va_start(ap, str);
-	while (*(str + i) && len != -1)
-	{
-		if (*(str + i) == '%')
-		{
-			i++;
-			check_ts(*(str + i), &ap, &len);
-		}
-		else
-		{
-			write(1, str + i, 1);
-			len++;
-		}
-		i++;
-	}
+	len = print_len_ret(str, &ap);
 	va_end(ap);
-	if (len > 2147483647)
-		return (-1);
 	return (len);
 }

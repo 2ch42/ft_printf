@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:55:07 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 13:03:48 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:10:06 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ int	ft_strlen(const	char *s)
 	return (len);
 }
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (*(s + i))
 	{
-		write(fd, s + i, 1);
+		if (!(write(fd, s + i, 1)))
+			return (-1);
 		i++;
 	}
+	return (1);
 }
