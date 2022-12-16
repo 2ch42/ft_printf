@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:55:07 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 16:10:06 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:33:24 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_putstr_fd(char *s, int fd)
 	i = 0;
 	while (*(s + i))
 	{
-		if (!(write(fd, s + i, 1)))
+		if (write(fd, s + i, 1) == -1)
 			return (-1);
 		i++;
 	}

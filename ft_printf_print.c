@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:16:17 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 16:21:27 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:30:55 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	print_c(va_list *ap_p, unsigned long long *len_addr)
 
 	d = va_arg(*ap_p, int);
 	arg = (unsigned char)d;
-	if (!(write(1, &d, 1)))
+	if (write(1, &d, 1) == -1)
 		return (-1);
 	*len_addr += 1;
 	return (1);
@@ -55,14 +55,14 @@ int	print_s(va_list *ap_p, unsigned long long *len_addr)
 	s = va_arg(*ap_p, char *);
 	if (s == NULL)
 	{
-		if (!(write(1, "(null)", 6)))
+		if (write(1, "(null)", 6) == -1)
 			return (-1);
 		*len_addr += 6;
 		return (1);
 	}
 	else
 	{
-		if (!(ft_putstr_fd(s, 1)))
+		if (ft_putstr_fd(s, 1) == -1)
 			return (-1);
 		*len_addr += ft_strlen(s);
 		return (1);
@@ -76,10 +76,10 @@ int	print_p(va_list *ap_p, unsigned long long *len_addr)
 
 	p = va_arg(*ap_p, unsigned long long);
 	s = ft_ll_convert_base(p, "0123456789abcdef");
-	if (!(write(1, "0x", 2)))
+	if (write(1, "0x", 2) == -1)
 		return (-1);
 	*len_addr += 2;
-	if (!(ft_putstr_fd(s, 1)))
+	if (ft_putstr_fd(s, 1) == -1)
 		return (-1);
 	*len_addr += ft_strlen(s);
 	free(s);

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:24:38 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 16:21:15 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:40:42 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check_ts(const	char c, va_list *ap_p, unsigned long long *len_p)
 		ret_val = print_num(c, ap_p, len_p);
 	else if (c == '%')
 	{
-		if (!(write(1, "%", 1)))
+		if (write(1, "%", 1) == -1)
 			ret_val = -1;
 		else
 			ret_val = 1;
@@ -47,7 +47,7 @@ static int	print_len_ret(const char *str, va_list *ap_p)
 	len = 0;
 	i = 0;
 	check = 1;
-	while (*(str + i) && check)
+	while (*(str + i) && check != -1)
 	{
 		if (*(str + i) == '%')
 		{
@@ -56,13 +56,13 @@ static int	print_len_ret(const char *str, va_list *ap_p)
 		}
 		else
 		{
-			if (!(write(1, str + i, 1)))
+			if (write(1, str + i, 1) == -1)
 				return (-1);
 			len++;
 		}
 		i++;
 	}
-	if (len > 2147483647)
+	if (len > 2147483647 || check == -1)
 		return (-1);
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:47:57 by changhyl          #+#    #+#             */
-/*   Updated: 2022/12/16 16:17:53 by changhyl         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:33:47 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	print_result(unsigned int nb, int fd)
 	while (length-- > 0)
 	{
 		c = '0' + nb / div_val;
-		if (!(write(fd, &c, 1)))
+		if (write(fd, &c, 1) == -1)
 			return (-1);
 		nb = nb % div_val;
 		div_val /= 10;
@@ -61,12 +61,12 @@ int	ft_put_u_nbr_fd(unsigned int n, int fd)
 {
 	if (n == 0)
 	{
-		if (!(write(fd, "0", 1)))
+		if (write(fd, "0", 1) == -1)
 			return (-1);
 		return (1);
 	}
 	else
-		if (!(print_result(n, fd)))
+		if (print_result(n, fd) == -1)
 			return (-1);
 	return (how_long(n));
 }
